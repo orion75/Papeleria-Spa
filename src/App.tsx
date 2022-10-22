@@ -1,25 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css"
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-function App() {
+import { MenuPrincial } from "./app/views/navbar/MenuPrincial"
+import { ClientesPage } from './app/pages/ClientesPage';
+import { Home } from './app/pages/Home';
+import { FormClientePage } from './app/pages/FormClientePage';
+
+function App(): JSX.Element {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <BrowserRouter>
+      <MenuPrincial />
+      <Routes>
+
+
+        <Route path="/" element={<Home />} />
+        <Route path="/clientes"element={<ClientesPage />} />
+        <Route path="/clientes/add" element={<FormClientePage />} />
+        <Route path="/clientes/edit/:id" element={<FormClientePage />} />
+        
+      </Routes>
+    </BrowserRouter>
+    
   );
 }
 
