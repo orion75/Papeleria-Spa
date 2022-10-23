@@ -21,7 +21,7 @@ const ListaProductos = (): JSX.Element => {
         console.error(error);
         setBuscando(false);
       });
-  });
+  }, []);
 
   return (
     <div className="container">
