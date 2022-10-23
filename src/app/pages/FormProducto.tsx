@@ -56,7 +56,7 @@ const FormProducto = (): JSX.Element => {
           navegar("/");
         });
     }
-  }, [id, navegar]);
+  }, [errores?.mensagge, id, isAddMode, navegar, reset]);
 
   return (
     <div className="container">

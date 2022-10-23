@@ -1,15 +1,14 @@
 import axios from "axios"
 import { Button } from "react-bootstrap"
-import { useNavigate } from "react-router-dom"
 import { environment } from "../environments/environment"
 
 function BtnEliminar(props: { endpoint: string; id: string }) {
     
-    const navegar = useNavigate()
+
     const Eliminar = async () => {
         axios.delete( environment.baseUrl + "/" + props.endpoint +"/" + props.id )
             .then( resp => {
-                navegar("../" + props.endpoint);
+                window.location.reload();
             }).catch( err => {
                 console.error( err );
             });
