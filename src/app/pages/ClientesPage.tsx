@@ -4,20 +4,14 @@ import Table from "react-bootstrap/Table";
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { ClienteModel } from "../models/ClienteModel";
+import { BtnEliminar } from "../components/BtnEliminar";
 
 const ClientesPage = (): JSX.Element => {
-  interface Cliente {
-    id: number;
-    primerNombre: string;
-    segundoNombre: string;
-    primerApellido: string;
-    segundoApellido: string;
-    celular: string;
-    direccion: string;
-  }
+ 
 
   const [buscando, setBuscando] = useState(true);
-  const [clientes, setClientes] = useState<Cliente[]>([]);
+  const [clientes, setClientes] = useState<ClienteModel[]>([]);
 
   useEffect(() => {
     axios
@@ -32,47 +26,56 @@ const ClientesPage = (): JSX.Element => {
       });
   });
 
-  
-
-
   return (
-    
-    <div>
-      <br/>
-      {buscando
-        ? "Cargando..."
-        : clientes.length === 0 && "No hay clientes disponibles"}
+    <div className="container">
+      <div>
+        <br />
+        {buscando
+          ? "Cargando..."
+          : clientes.length === 0 && "No hay clientes disponibles"}
 
-      <Table striped bordered hover variant="dark">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Cliente</th>
-            <th>Celular</th>
-            <th>Direccion</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {clientes.map(item => (
+        <Table striped bordered hover variant="dark">
+          <thead>
             <tr>
-              <td>{item.id}</td>
-              <td>{item.primerNombre} {item.segundoNombre} {item.primerApellido} {item.segundoApellido}</td>
-              <td>{item.celular}</td>
-              <td>{item.direccion}</td>
-              
-              <td><Link to={"/Clientes/edit/" + item.id}> <Button as="input" type="submit" value="Editar" /></Link></td>
-              <td><Button as="input" type="submit" value="Eliminar" /></td>
+              <th>#</th>
+              <th>Cliente</th>
+              <th>Celular</th>
+              <th>Direccion</th>
+              <th></th>
+              <th></th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {clientes.map((item) => (
+              <tr key={item.id.toString()}>
+                <td>{item.id}</td>
+                <td>
+                  {item.primerNombre} {item.segundoNombre} {item.primerApellido} {item.segundoApellido}
+                </td>
+                <td>{item.celular}</td>
+                <td>{item.direccion}</td>
 
-      <Link to={"/Clientes/add"}> <Button as="input" type="submit" value="Crear" /></Link>
+                <td>
+                  <Link to={"/Clientes/edit/" + item.id}>
+                    {" "}
+                    <Button as="input" type="submit" value="Editar" />
+                  </Link>
+                </td>
+                <td>
+                  <BtnEliminar endpoint={"clientes"} id={item.id.toString()}  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+
+        <Link to={"/Clientes/add"}>
+          {" "}
+          <Button as="input" type="submit" value="Crear Cliente" />
+        </Link>
+      </div>
     </div>
   );
 };
 
 export { ClientesPage };
-  

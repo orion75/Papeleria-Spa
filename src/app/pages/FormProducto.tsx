@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { environment } from "../environments/environment";
 import { useForm } from "react-hook-form";
-import { ClienteModel } from "../models/ClienteModel";
+import { ProductoModel } from "../models/ProductoModel";
 import { ErroModel } from "../models/ErroModel";
 
-const FormClientePage = (): JSX.Element => {
+const FormProducto = (): JSX.Element => {
   const { id } = useParams();
   const isAddMode = !id;
   const { register, handleSubmit, reset, setValue, getValues, formState } =
-    useForm<ClienteModel>();
+    useForm<ProductoModel>();
 
   const [errores, setErrores] = useState<ErroModel>();
   const navegar = useNavigate();
@@ -19,11 +19,11 @@ const FormClientePage = (): JSX.Element => {
     return isAddMode ? createItem(data) : updateItem(id, data);
   });
 
-  function createItem(data: ClienteModel) {
+  function createItem(data: ProductoModel) {
     axios
-      .post(environment.baseUrl + "/clientes", data)
+      .post(environment.baseUrl + "/productos", data)
       .then((resp) => {
-        navegar("/Clientes");
+        navegar("/Productos");
       })
       .catch((error) => {
         console.error(error);
@@ -31,11 +31,11 @@ const FormClientePage = (): JSX.Element => {
       });
   }
 
-  function updateItem(id: string, data: ClienteModel) {
+  function updateItem(id: string, data: ProductoModel) {
     axios
-      .put(environment.baseUrl + "/clientes/" + id, data)
+      .put(environment.baseUrl + "/productos/" + id, data)
       .then((resp) => {
-        navegar("/Clientes");
+        navegar("/Productos");
       })
       .catch((error) => {
         console.error(error);
@@ -45,7 +45,7 @@ const FormClientePage = (): JSX.Element => {
   useEffect(() => {
     if (!isAddMode) {
       axios
-        .get(environment.baseUrl + "/clientes/" + id)
+        .get(environment.baseUrl + "/productos/" + id)
         .then((resp) => {
           reset(resp.data);
         })
@@ -61,7 +61,7 @@ const FormClientePage = (): JSX.Element => {
   return (
     <div className="container">
       <form onSubmit={onSubmit}>
-        <h1>{isAddMode ? "Crear Cliente" : "Cambiar Cliente"}</h1>
+        <h1>{isAddMode ? "Crear Producto" : "Cambiar Producto"}</h1>
 
         <div className="form-group row" hidden>
           <div className="form-group col">
@@ -79,83 +79,49 @@ const FormClientePage = (): JSX.Element => {
         </div>
 
         <div className="form-group row">
-          <label>Primer Nombre</label>
+          <label>Nombre del Producto</label>
           <div className="col-sm-8">
             <input
               type="text"
-              {...register("primerNombre", { required: true })}
+              {...register("nombre", { required: true })}
               className={`form-control ${
-                formState.errors.primerNombre ? "is-invalid" : ""
+                formState.errors.nombre ? "is-invalid" : ""
               }`}
             />
           </div>
         </div>
 
         <div className="form-group row">
-          <label>Segundo Nombre</label>
+          <label>Descripcion</label>
           <div className="col-sm-8">
             <input
               type="text"
-              {...register("segundoNombre")}
-              className={`form-control ${
-                formState.errors.segundoNombre ? "is-invalid" : ""
+              {
+                ...register("descripcion", { required: true })}
+                className={`form-control ${
+                  formState.errors.descripcion
+                  ? "is-invalid" : ""
               }`}
             />
           </div>
         </div>
 
         <div className="form-group row">
-          <label>Primer Apellido</label>
+          <label>Precio de venta</label>
           <div className="col-sm-8">
             <input
-              type="text"
-              {...register("primerApellido", { required: true })}
+              type="number"
+              {...register("precioventa", { required: true })}
               className={`form-control ${
-                formState.errors.primerApellido ? "is-invalid" : ""
+                formState.errors.precioventa ? "is-invalid" : ""
               }`}
+              min="0.00"
+              
             />
           </div>
         </div>
 
-        <div className="form-group row">
-          <label>Segundo Apellido</label>
-          <div className="col-sm-8">
-            <input
-              type="text"
-              {...register("segundoApellido")}
-              className={`form-control ${
-                formState.errors.segundoApellido ? "is-invalid" : ""
-              }`}
-            />
-          </div>
-        </div>
-
-        <div className="form-group row">
-          <label>Celular</label>
-          <div className="col-sm-8">
-            <input
-              type="text"
-              {...register("celular", { required: true })}
-              className={`form-control ${
-                formState.errors.celular ? "is-invalid" : ""
-              }`}
-            />
-          </div>
-        </div>
-
-        <div className="form-group row">
-          <label>Direccion</label>
-          <div className="col-sm-8">
-            <input
-              type="text"
-              {...register("direccion", { required: true })}
-              className={`form-control ${
-                formState.errors.direccion ? "is-invalid" : ""
-              }`}
-            />
-          </div>
-        </div>
-
+        <br/>
         <button
           type="submit"
           disabled={formState.isSubmitting}
@@ -166,7 +132,7 @@ const FormClientePage = (): JSX.Element => {
           )}
           Guardar
         </button>
-        <Link to={"../clientes"} className="btn btn-link">
+        <Link to={"../Productos"} className="btn btn-link">
           Cancelar
         </Link>
       </form>
@@ -174,4 +140,4 @@ const FormClientePage = (): JSX.Element => {
   );
 };
 
-export { FormClientePage };
+export { FormProducto };

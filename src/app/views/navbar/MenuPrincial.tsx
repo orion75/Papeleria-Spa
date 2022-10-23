@@ -18,10 +18,10 @@ function MenuPrincial(): JSX.Element {
           <Nav className="me-auto">
             <Nav.Link as={NavLink} to={"/"}>Home</Nav.Link>
             <Nav.Link as={NavLink} to={"/Clientes"}>Clientes</Nav.Link>
-            <Nav.Link as={NavLink} to={"/pricing"}>Productos</Nav.Link>
+            <Nav.Link as={NavLink} to={"/Productos"}>Productos</Nav.Link>
 
-            <NavDropdown title="Productos" id="basic-nav-dropdown">
-              <NavDropdown.Item as={NavLink} to={"/Productos"}>Listado</NavDropdown.Item>
+            <NavDropdown title="Titulo" id="basic-nav-dropdown">
+              <NavDropdown.Item as={NavLink} to={"/mm--tt"}>Listado</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to={"/Ventas"}>Action</NavDropdown.Item>
             </NavDropdown>
           </Nav>
