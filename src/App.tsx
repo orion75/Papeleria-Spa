@@ -10,6 +10,7 @@ import { ListaProductos } from './app/pages/ListaProductos';
 import { FormProducto } from './app/pages/FormProducto';
 import { ListaVededores } from './app/pages/ListaVededores';
 import { FormVendedor } from './app/pages/FormVendedor';
+import LoginPage from './app/pages/LoginPage';
 
 function App(): JSX.Element {
   return (
@@ -17,7 +18,7 @@ function App(): JSX.Element {
     <BrowserRouter>
       <MenuPrincial />
       <Routes>
-
+        <Route path='/Login' element={<LoginPage />}/>
 
         <Route path="/" element={<Home />} />
         <Route path="/clientes" element={<ClientesPage />} />
