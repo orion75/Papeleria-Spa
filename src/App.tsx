@@ -11,6 +11,8 @@ import { FormProducto } from './app/pages/FormProducto';
 import { ListaVededores } from './app/pages/ListaVededores';
 import { FormVendedor } from './app/pages/FormVendedor';
 import LoginPage from './app/pages/LoginPage';
+import { ListaProveedores } from './app/pages/ListaProveedores';
+import { FormProveedor } from './app/pages/FormProveedor';
 
 function App(): JSX.Element {
   return (
@@ -32,6 +34,10 @@ function App(): JSX.Element {
         <Route path="/vendedores" element={<ListaVededores />} />
         <Route path="/vendedores/add" element={<FormVendedor />} />
         <Route path="/vendedores/edit/:id" element={<FormVendedor />} />
+
+        <Route path="/proveedores" element={<ListaProveedores />} />
+        <Route path="/proveedores/add" element={<FormProveedor />} />
+        <Route path="/proveedores/edit/:id" element={<FormProveedor />} />
         
       </Routes>
     </BrowserRouter>
