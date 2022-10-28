@@ -21,7 +21,7 @@ function MenuPrincial(): JSX.Element {
             <Nav.Link as={NavLink} to={"/Vendedores"}>Vendedores</Nav.Link>
             <Nav.Link as={NavLink} to={"/Proveedores"}>Proveedores</Nav.Link>
             <Nav.Link as={NavLink} to={"/Productos"}>Productos</Nav.Link>
-            <Nav.Link as={NavLink} to={"/Facturas"}>Facturas</Nav.Link>
+            <Nav.Link as={NavLink} to={"/Login"}>Login</Nav.Link>
 
             <NavDropdown title="Titulo" id="basic-nav-dropdown">
               <NavDropdown.Item as={NavLink} to={"/mm--tt"}>Listado</NavDropdown.Item>

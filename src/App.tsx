@@ -38,6 +38,8 @@ function App(): JSX.Element {
         <Route path="/proveedores" element={<ListaProveedores />} />
         <Route path="/proveedores/add" element={<FormProveedor />} />
         <Route path="/proveedores/edit/:id" element={<FormProveedor />} />
+
+        <Route path="/login" element={<LoginPage />} />
         
       </Routes>
     </BrowserRouter>
